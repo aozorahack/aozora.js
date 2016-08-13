@@ -1,6 +1,6 @@
 #
 # Copyright 2016 Kenichi Sato
-# 
+#
 Client = require('node-rest-client').Client
 
 AOZORAPI_HOST = process.env.AOZORAPI_HOST or "153.127.202.91"
@@ -23,21 +23,19 @@ class AozoraClient extends Client
         else
           resolve data
 
+  book_url: (book_id, type)->
+    if type in ['html', 'txt']
+      return AOZORAPI_URL + "/books/#{book_id}/content?format=#{type}"
+    else
+      return AOZORAPI_URL + "/bookd/#{book_id}/card"
+  
   books: (args)->
     params = {}
     if args
       if args.id
         return @_command "book_byid", {path: {id: args.id}}
       else
-        params.parameters = {}
-        if args.title
-          params.parameters.title = args.title
-        if args.author
-          params.parameters.author = args.author
-        if args.limit
-          params.parameters.limit = args.limit
-        if args.after
-          params.parameters.after = args.after
+        params.parameters = args
     @_command "books", params
 
   persons: (args)->
@@ -46,9 +44,7 @@ class AozoraClient extends Client
       if args.id
         return @_command "person_byid", {path: {id: args.id}}
       else
-        params.parameters = {}
-        if args.name
-          params.parameters.name = args.name
+        params.parameters = args
     @_command "persons", params
 
   workers: (args)->
@@ -57,9 +53,7 @@ class AozoraClient extends Client
       if args.id
         return @_command "worker_byid", {path: {id: args.id}}
       else
-        params.parameters = {}
-        if args.name
-          params.parameters.name = args.name
+        params.parameters = args
     @_command "workers", params
 
 module.exports.Client = AozoraClient
