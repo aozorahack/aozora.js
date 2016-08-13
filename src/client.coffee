@@ -3,7 +3,7 @@
 #
 Client = require('node-rest-client').Client
 
-AOZORAPI_HOST = process.env.AOZORAPI_HOST or "153.127.202.91"
+AOZORAPI_HOST = process.env.AOZORAPI_HOST or "www.aozorahack.net"
 AOZORAPI_URL = "http://#{AOZORAPI_HOST}/api/v0.1"
 
 class AozoraClient extends Client
