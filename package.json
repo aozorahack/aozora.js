@@ -8,7 +8,7 @@
   },
   "author": "Kenichi Sato <ksato9700@gmail.com>",
   "dependencies": {
-    "node-rest-client": "2.0.1"
+    "node-rest-client": "3.0.3"
   },
   "devDependencies": {
     "grunt": "1.0.1",
